@@ -68,7 +68,16 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/pwa',
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
   ],
+
+  /*
+  ** Axios
+  */
+  axios: {
+    // proxyHeaders: false
+  },
 
   /*
   ** Build configuration

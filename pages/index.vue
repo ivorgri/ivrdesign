@@ -1,11 +1,11 @@
 <template>
   <section class="container">
     <address id="contactme">
-      <a href="mailto:ivorgrisel@gmail.com">E-mail me</a>
+      <a :href="`mailto:${$store.getters.getContactDetails.email}`">E-mail me</a>
     </address>
     <a
       id="github-link"
-      href="https://github.com/ivorgri"
+      :href="$store.getters.getContactDetails.githubRepo"
       target="_blank">
       <svg
         id="github-logo"
