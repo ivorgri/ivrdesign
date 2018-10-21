@@ -21,12 +21,7 @@
 </template>
 
 <script>
-  console.log(process.env.mode);
   export default {
-    asyncData(context) {
-      console.log(context.env.mode);
-      return context.env;
-    },
     head: {
       title: `${process.env.mode === 'production' ? 'IVR.DESIGN' : `IVR.DESIGN - ${process.env.mode}`}`,
     }
