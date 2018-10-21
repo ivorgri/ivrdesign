@@ -2,7 +2,7 @@ const cmsApiUrl = 'https://cms.ivrdesign.nl/cockpit-master/api';
 const getSingletonUrl = `${cmsApiUrl}/singletons/get`;
 
 async function getSingleton(singleton, app) {
-  return await app.$axios.$get(`${getSingletonUrl}/${singleton}/${process.env.cmsApiToken}`)
+  return await app.$axios.$get(`${getSingletonUrl}/${singleton}?token=${process.env.CMS_API_TOKEN}`)
 }
 
 export const state = () => ({
