@@ -62,18 +62,17 @@ h1 {
 }
 
 footer {
-  display: grid;
-  grid-template-columns: 35vw 15vw 15vw 35vw;
-  grid-template-areas: ". mail github .";
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   margin: 5vh 0;
 }
 
-#contactme {
-  grid-area: mail;
+footer > * {
+  margin: 0 2vw;
 }
 
 #github-link {
-  grid-area: github;
   display: flex;
 }
 
