@@ -11,7 +11,12 @@ html {
   overflow: hidden;
 }
 
+body {
+  overflow-y: auto;
+}
+
 body, #__nuxt, #__layout, #portfolio {
+  height: 100vh;
   min-height: 100vh;
   margin: 0;
   font-size: calc(16px + 1vw);
@@ -53,5 +58,35 @@ h1 {
 
 .dark-dot {
   color: $logo-red-color;
+  transition: $transition-time;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 5vh 0;
+}
+
+footer > * {
+  margin: 0 2vw;
+}
+
+#github-link {
+  display: flex;
+}
+
+#github-logo {
+  width: calc(16px + 2vw);
+  height: calc(16px + 2vw);
+}
+
+.light-logo {
+  fill: $light-main-color;
+  transition: $transition-time;
+}
+
+.dark-logo {
+  fill: $dark-main-color;
   transition: $transition-time;
 }

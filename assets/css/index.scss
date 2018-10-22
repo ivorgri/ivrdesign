@@ -1,31 +1,15 @@
 @import "@/assets/css/variables.scss";
 
 .container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+  display: grid;
+  grid-template-columns: 10vw 80vw 10vw;
+  grid-template-areas: ". content .";
 }
 
-.container > * {
-  margin: 0 1vw;
-}
-
-#github-link {
-  display: flex;
-}
-
-#github-logo {
-  width: calc(16px + 2vw);
-  height: calc(16px + 2vw);
-}
-
-.light-logo {
-  fill: $light-main-color;
-  transition: $transition-time;
-}
-
-.dark-logo {
-  fill: $dark-main-color;
-  transition: $transition-time;
+#content {
+  grid-area: content;
 }
