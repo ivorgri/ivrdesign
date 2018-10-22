@@ -1,5 +1,8 @@
 <template>
   <section class="container">
+    <div
+      id="content"
+      v-html="$store.getters.getHomepage.contentOnline"/>
     <address id="contactme">
       <a :href="`mailto:${$store.getters.getContactDetails.email}`">E-mail me</a>
     </address>

@@ -12,10 +12,12 @@ html {
 }
 
 body, #__nuxt, #__layout, #portfolio {
+  height: 100vh;
   min-height: 100vh;
   margin: 0;
   font-size: calc(16px + 1vw);
   /* line-height: calc(1.1em + 0.5vw); */
+  overflow-y: auto;
 }
 
 h1 {
