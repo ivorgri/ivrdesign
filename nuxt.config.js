@@ -70,6 +70,7 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
+    '@nuxtjs/font-awesome',
   ],
 
   /*
