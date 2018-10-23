@@ -33,6 +33,15 @@
           :class="[ $store.getters.isOnline ? 'light-logo' : 'dark-logo' ]"
           :icon="['fab', 'github']" />
       </a>
+      <a
+        id="linkedin-link"
+        :href="$store.getters.getContactDetails.linkedIn"
+        target="_blank">
+        <font-awesome-icon
+          id="linkedin-logo"
+          :class="[ $store.getters.isOnline ? 'light-logo' : 'dark-logo' ]"
+          :icon="['fab', 'linkedin']" />
+      </a>
     </footer>
   </div>
 </template>
