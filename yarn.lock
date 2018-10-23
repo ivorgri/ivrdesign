@@ -748,6 +748,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"
   integrity sha512-5a6wqoJV/xEdbRNKVo6I4hO3VjyDq//8q2f9I6PBAvMesJHFauXDorcNCsr9RzvsZnaWi5NYCcfyqP1QeFHFbw==
 
+"@fortawesome/fontawesome-free@^5.4.1":
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.4.1.tgz#6194786c1a705ab84253e06429834466670e3c3f"
+  integrity sha512-ZcxfUmLFl4RLG71cPeZcTXRa6rt3xLnMmomAb7aYKRzUmlRRj7E8EVqSwYSXBiV2x6XpSQmGOQmNQx6HSeSwVQ==
+
 "@jimp/bmp@^0.5.3":
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/@jimp/bmp/-/bmp-0.5.3.tgz#7f1a854dc47666072bbea285d61ff38941c2e38a"
