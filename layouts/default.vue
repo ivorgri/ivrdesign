@@ -25,7 +25,7 @@
         id="github-link"
         :href="$store.getters.getContactDetails.githubRepo"
         target="_blank">
-        <svg
+        <!--<svg
           id="github-logo"
           :class="[ $store.getters.isOnline ? 'light-logo' : 'dark-logo' ]"
           version="1.1"
@@ -61,7 +61,7 @@
                 c44.163-14.653,80.185-41.062,108.068-79.226c27.88-38.161,41.825-81.126,41.825-128.906
                 C438.536,184.851,428.728,148.168,409.132,114.573z"/>
           </g>
-        </svg>
+        </svg>-->
       </a>
     </footer>
   </div>
@@ -71,6 +71,6 @@
   export default {
     head: {
       title: `${process.env.mode === 'production' ? 'IVR.DESIGN' : `IVR.DESIGN - ${process.env.mode}`}`,
-    }
+    },
   };
 </script>
