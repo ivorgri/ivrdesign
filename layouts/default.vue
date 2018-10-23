@@ -20,16 +20,21 @@
     <footer>
       <address id="contactme">
         <a :href="`mailto:${$store.getters.getContactDetails.email}`">
-          <!-- E-mail me -->
-          <font-awesome-icon :icon="['far', 'envelope']" />
+          <font-awesome-icon
+            id="contactme-logo"
+            :class="[ $store.getters.isOnline ? 'light-logo' : 'dark-logo' ]"
+            :icon="['far', 'envelope']" />
         </a>
       </address>
       <a
         id="github-link"
         :href="$store.getters.getContactDetails.githubRepo"
         target="_blank">
-        <font-awesome-icon :icon="['fab', 'github']" />
-        <!--<svg
+        <font-awesome-icon
+          id="github-logo"
+          :class="[ $store.getters.isOnline ? 'light-logo' : 'dark-logo' ]"
+          :icon="['fab', 'github']" />
+          <!--<svg
           id="github-logo"
           :class="[ $store.getters.isOnline ? 'light-logo' : 'dark-logo' ]"
           version="1.1"

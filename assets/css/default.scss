@@ -76,17 +76,17 @@ footer > * {
   display: flex;
 }
 
-#github-logo {
+#github-logo, #contactme-logo {
   width: calc(16px + 2vw);
   height: calc(16px + 2vw);
 }
 
 .light-logo {
-  fill: $light-main-color;
+  color: $light-main-color;
   transition: $transition-time;
 }
 
 .dark-logo {
-  fill: $dark-main-color;
+  color: $dark-main-color;
   transition: $transition-time;
 }
