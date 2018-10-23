@@ -11,10 +11,6 @@ html {
   overflow: hidden;
 }
 
-body {
-  overflow-y: auto;
-}
-
 body, #__nuxt, #__layout, #portfolio {
   height: 100vh;
   min-height: 100vh;
@@ -26,6 +22,10 @@ body, #__nuxt, #__layout, #portfolio {
 h1 {
   font-size: calc(1.2em + 3vw);
   margin: 0;
+}
+
+#portfolio {
+  overflow-y: auto;
 }
 
 #title {
