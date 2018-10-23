@@ -51,13 +51,19 @@ h1 {
   transition: $transition-time;
 }
 
+#dot {
+  width: calc(8px + 0.7vw);
+  height: calc(8px + 0.7vw);
+  margin: 0 1vw;
+}
+
 .light-dot {
-  color: $logo-green-color;
+  background-color: $logo-green-color;
   transition: $transition-time;
 }
 
 .dark-dot {
-  color: $logo-red-color;
+  background-color: $logo-red-color;
   transition: $transition-time;
 }
 

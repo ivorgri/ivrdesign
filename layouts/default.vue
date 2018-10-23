@@ -3,7 +3,7 @@
     id="portfolio"
     :class="[ $store.getters.isOnline ? 'light' : 'dark' ]">
     <header>
-      <h1 id="title">
+      <!--<h1 id="title">
         <nuxt-link to ="/">
           <span>IVR</span>
           <span
@@ -14,7 +14,18 @@
             Design
           </span>
         </nuxt-link>
-      </h1>
+      </h1>-->
+
+      <nuxt-link to ="/">
+        <h1 id="title">
+          IVR
+          <div
+            id="dot"
+            :class="[ $store.getters.isOnline ? 'light-dot' : 'dark-dot' ]"/>
+          DESIGN
+        </h1>
+      </nuxt-link>
+
     </header>
     <nuxt/>
     <footer>
