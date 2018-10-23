@@ -19,13 +19,16 @@
     <nuxt/>
     <footer>
       <address id="contactme">
-        <a :href="`mailto:${$store.getters.getContactDetails.email}`">E-mail me</a>
+        <a :href="`mailto:${$store.getters.getContactDetails.email}`">
+          <!-- E-mail me -->
+          <font-awesome-icon :icon="['far', 'envelope']" />
+        </a>
       </address>
       <a
         id="github-link"
         :href="$store.getters.getContactDetails.githubRepo"
         target="_blank">
-        <font-awesome-icon :icon="['fas', 'github']"/>
+        <font-awesome-icon :icon="['fab', 'github']" />
         <!--<svg
           id="github-logo"
           :class="[ $store.getters.isOnline ? 'light-logo' : 'dark-logo' ]"
@@ -67,16 +70,3 @@
     </footer>
   </div>
 </template>
-
-<script>
-  import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
-
-  export default {
-    head: {
-      title: `${process.env.mode === 'production' ? 'IVR.DESIGN' : `IVR.DESIGN - ${process.env.mode}`}`,
-    },
-    components: {
-      FontAwesomeIcon,
-    }
-  };
-</script>
