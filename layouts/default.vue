@@ -25,6 +25,7 @@
         id="github-link"
         :href="$store.getters.getContactDetails.githubRepo"
         target="_blank">
+        <font-awesome-icon :icon="['fas', 'github']"/>
         <!--<svg
           id="github-logo"
           :class="[ $store.getters.isOnline ? 'light-logo' : 'dark-logo' ]"
@@ -68,9 +69,14 @@
 </template>
 
 <script>
+  import FontAwesomeIcon from '@fortawesome/vue-fontawesome';
+
   export default {
     head: {
       title: `${process.env.mode === 'production' ? 'IVR.DESIGN' : `IVR.DESIGN - ${process.env.mode}`}`,
     },
+    components: {
+      FontAwesomeIcon,
+    }
   };
 </script>
