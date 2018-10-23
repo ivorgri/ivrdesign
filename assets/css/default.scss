@@ -82,9 +82,14 @@ footer > * {
   display: flex;
 }
 
-#github-logo, #contactme-logo, #linkedin-logo {
+.footer-logo {
   width: calc(16px + 2vw);
   height: calc(16px + 2vw);
+
+  &:hover {
+    width: calc(16px + 2.3vw);
+    height: calc(16px + 2.3vw);
+  }
 }
 
 .light-logo {

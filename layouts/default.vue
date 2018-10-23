@@ -33,7 +33,8 @@
         <font-awesome-icon
           id="contactme-logo"
           :class="[ $store.getters.isOnline ? 'light-logo' : 'dark-logo' ]"
-          :icon="['far', 'envelope']" />
+          :icon="['far', 'envelope']"
+          class="footer-logo" />
       </a>
       <a
         id="github-link"
@@ -42,7 +43,8 @@
         <font-awesome-icon
           id="github-logo"
           :class="[ $store.getters.isOnline ? 'light-logo' : 'dark-logo' ]"
-          :icon="['fab', 'github']" />
+          :icon="['fab', 'github']"
+          class="footer-logo" />
       </a>
       <a
         id="linkedin-link"
@@ -51,7 +53,8 @@
         <font-awesome-icon
           id="linkedin-logo"
           :class="[ $store.getters.isOnline ? 'light-logo' : 'dark-logo' ]"
-          :icon="['fab', 'linkedin']" />
+          :icon="['fab', 'linkedin']"
+          class="footer-logo" />
       </a>
     </footer>
   </div>
