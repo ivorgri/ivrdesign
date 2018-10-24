@@ -3,7 +3,9 @@
     id="portfolio"
     :class="[ $store.getters.isOnline ? 'light' : 'dark' ]">
     <header data-cy="header">
-      <nuxt-link to ="/">
+      <nuxt-link
+        id="title-link"
+        to ="/" >
         <h1
           id="title"
           data-cy="site-title">

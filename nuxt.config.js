@@ -53,6 +53,7 @@ module.exports = {
     '@/assets/css/variables.scss',
     '@/assets/css/default.scss',
     '@/assets/css/index.scss',
+    '@/assets/css/blog.scss',
   ],
 
   /*

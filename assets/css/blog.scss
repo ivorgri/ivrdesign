@@ -1,0 +1,19 @@
+@import "@/assets/css/variables.scss";
+
+.blog-container {
+  display: grid;
+  grid-template-columns: 10vw 80vw 10vw;
+  grid-template-rows: repeat(2,auto);
+  grid-template-areas: ". content .";
+}
+
+.blog-container span {
+  grid-area: content;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity $transition-time/2;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
