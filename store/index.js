@@ -24,14 +24,11 @@ export const getters = {
   getContactDetails: state => {
     return state.contactDetails;
   },
-  getHomepage: state => {
-    return state.pages.find((page) => page.template === 'Homepage');
-  },
-  getBlogpage: state => {
-    return state.pages.find((page) => page.template === 'Blog');
+  getPageBySlug: (state) => (slug) => {
+    return state.pages.find((page) => page.slug === slug.replace('/','')) || {};
   },
   getBlogPosts: state => {
-    return state.blogPosts;
+    return state.blogPosts.find((blogPost) => blogPost.published === true) || [];
   }
 }
 
@@ -45,8 +42,8 @@ export const mutations = {
   SET_PAGES (state, pages) {
     state.pages = pages;
   },
-  SET_BLOG_POSTS (state, blog_posts) {
-    state.blog_posts = blog_posts;
+  SET_BLOG_POSTS (state, blogPosts) {
+    state.blogPosts = blogPosts;
   },
 }
 

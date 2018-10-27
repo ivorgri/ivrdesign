@@ -33,12 +33,13 @@
         class="blog-content"
         data-cy="content"
         v-html="onlineContent"/>
+      <hr key="splitter">
       <div
         v-if="$store.getters.getBlogPosts.length <= 0"
         id="no-blog-posts"
         key="no-blog-posts"
         data-cy="no-blog-posts">
-        No blog posts.
+        {{ page.listFallback }}
       </div>
       <div
         v-else-if="$store.getters.getBlogPosts.length > 0"
@@ -59,14 +60,17 @@
 <script>
   export default {
     computed: {
+      page() {
+        return this.$store.getters.getPageBySlug(this.$route.path);
+      },
       isOnline() {
         return this.$store.getters.isOnline;
       },
       onlineContent() {
-        return this.$store.getters.getBlogpage.contentOnline;
+        return this.page.contentOnline;
       },
       offlineContent() {
-        return this.$store.getters.getBlogpage.contentOffline;
+        return this.page.contentOffline;
       },
     },
   }
