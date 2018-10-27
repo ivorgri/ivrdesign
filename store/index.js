@@ -28,7 +28,7 @@ export const getters = {
     return state.pages.find((page) => page.slug === slug.replace('/','')) || {};
   },
   getBlogPosts: state => {
-    return state.blogPosts.find((blogPost) => blogPost.published === true) || [];
+    return state.blogPosts.filter((blogPost) => blogPost.published === true) || [];
   }
 }
 

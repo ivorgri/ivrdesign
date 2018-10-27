@@ -1,6 +1,7 @@
 <template>
   <section
-    class="blog-container"
+    :class="containerClass"
+    class="container"
     data-cy="container">
     <transition-group
       name="fade"
@@ -42,16 +43,19 @@
         {{ page.listFallback }}
       </div>
       <div
-        v-else-if="$store.getters.getBlogPosts.length > 0"
+        v-else-if="blogPosts.length > 0"
         id="blog-posts"
         key="blog-posts"
         data-cy="blog-posts">
-        <div
-          v-for="blogPost in $store.getters.getBlogPosts"
-          :key="blogPost.title">
-          {{ blogPost.title }}
-          {{ blogPost.title }}
-        </div>
+        <nuxt-link
+          v-for="blogPost in blogPosts"
+          :to="blogPost.slug_slug"
+          :key="blogPost.title"
+          class="blog-post-link">
+          <h2 class="blog-post-link-title">{{ blogPost.title }}</h2>
+          <span class="blog-post-link-create-date">{{ blogPost._created }}</span>
+          <span class="blog-post-link-preview">{{ blogPost.preview }}</span>
+        </nuxt-link>
       </div>
     </transition-group>
   </section>
@@ -60,8 +64,14 @@
 <script>
   export default {
     computed: {
+      cleanSlug() {
+        return this.$route.path.replace('/','');
+      },
+      containerClass() {
+        return `${this.cleanSlug}-container`;
+      },
       page() {
-        return this.$store.getters.getPageBySlug(this.$route.path);
+        return this.$store.getters.getPageBySlug(this.cleanSlug);
       },
       isOnline() {
         return this.$store.getters.isOnline;
@@ -72,6 +82,9 @@
       offlineContent() {
         return this.page.contentOffline;
       },
+      blogPosts() {
+        return this.$store.getters.getBlogPosts;
+      }
     },
   }
 
