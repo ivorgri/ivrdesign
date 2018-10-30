@@ -10,28 +10,28 @@
         v-if="isOnline"
         id="online-content"
         key="online-content"
-        class="blog-content"
+        class="content"
         data-cy="content"
         v-html="onlineContent"/>
       <div
         v-else-if="!isOnline && !offlineContent"
         id="online-offline-content"
         key="online-offline-content"
-        class="blog-content"
+        class="content"
         data-cy="content"
         v-html="onlineContent"/>
       <div
         v-else-if="!isOnline && offlineContent"
         id="offline-content"
         key="offline-content"
-        class="blog-content"
+        class="content"
         data-cy="content"
         v-html="offlineContent"/>
       <div
         v-else
         id="fallback-content"
         key="fallback-content"
-        class="blog-content"
+        class="content"
         data-cy="content"
         v-html="onlineContent"/>
       <hr key="splitter">
@@ -100,6 +100,10 @@
     grid-template-areas: ". content .";
   }
 
+  .content {
+    padding: 0 1vw;
+  }
+
   .blog-container span {
     grid-area: content;
   }
@@ -108,14 +112,16 @@
     text-decoration: none;
     color: $light-main-color;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 75% 25%;
     grid-template-rows: repeat(2, auto);
     grid-template-areas: "title createdate"
       "preview preview";
+    padding: 0 1vw;
 
     .blog-post-link-title {
       grid-area: title;
       margin: 0;
+      border-bottom: 3px solid white;
     }
 
     .blog-post-link-create-date {
@@ -125,10 +131,16 @@
 
     .blog-post-link-preview {
       grid-area: preview;
+      border-left: 3px solid white;
     }
 
-    &:hover {
-      text-decoration: underline;
+    &:hover .blog-post-link-title {
+      // text-decoration: underline;
+      border-bottom: 3px solid black;
+    }
+
+    &:hover .blog-post-link-preview {
+      border-left: 3px solid black;
     }
   }
 
