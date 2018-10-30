@@ -49,7 +49,7 @@
         data-cy="blog-posts">
         <nuxt-link
           v-for="blogPost in blogPosts"
-          :to="blogPost.slug_slug"
+          :to="`/blog/${blogPost.slug_slug}`"
           :key="blogPost.title"
           class="blog-post-link">
           <h2 class="blog-post-link-title">{{ blogPost.title }}</h2>
