@@ -51,9 +51,6 @@ module.exports = {
   */
   css: [
     '@/assets/css/variables.scss',
-    '@/assets/css/default.scss',
-    '@/assets/css/index.scss',
-    '@/assets/css/subpage.scss',
   ],
 
   /*
