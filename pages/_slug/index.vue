@@ -121,7 +121,7 @@
     .blog-post-link-title {
       grid-area: title;
       margin: 0;
-      border-bottom: 3px solid white;
+      border-bottom: 3px solid $dark-main-color;
     }
 
     .blog-post-link-create-date {
@@ -131,16 +131,15 @@
 
     .blog-post-link-preview {
       grid-area: preview;
-      border-left: 3px solid white;
+      border-left: 3px solid $dark-main-color;
     }
 
     &:hover .blog-post-link-title {
-      // text-decoration: underline;
-      border-bottom: 3px solid black;
+      border-bottom: 3px solid $light-main-color;
     }
 
     &:hover .blog-post-link-preview {
-      border-left: 3px solid black;
+      border-left: 3px solid $light-main-color;
     }
   }
 
