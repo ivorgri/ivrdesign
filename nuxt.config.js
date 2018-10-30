@@ -63,6 +63,7 @@ module.exports = {
     // https://github.com/nuxt/nuxt.js/issues/2367
     { src: '~/middleware/connectionStatus.js', ssr: false },
     { src: '~/plugins/font-awesome' },
+    { src: '~/plugins/filters' },
   ],
 
   /*

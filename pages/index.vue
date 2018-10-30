@@ -44,10 +44,10 @@
         return this.$store.getters.isOnline;
       },
       onlineContent() {
-        return this.$store.getters.getPageBySlug('Home').contentOnline;
+        return this.$store.getters.getPageBySlug('').contentOnline;
       },
       offlineContent() {
-        return this.$store.getters.getPageBySlug('Home').contentOffline;
+        return this.$store.getters.getPageBySlug('').contentOffline;
       },
     },
   }

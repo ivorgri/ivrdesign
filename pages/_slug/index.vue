@@ -53,7 +53,7 @@
           :key="blogPost.title"
           class="blog-post-link">
           <h2 class="blog-post-link-title">{{ blogPost.title }}</h2>
-          <span class="blog-post-link-create-date">{{ blogPost._created }}</span>
+          <span class="blog-post-link-create-date">{{ blogPost._created | formatDate }}</span>
           <span class="blog-post-link-preview">{{ blogPost.preview }}</span>
         </nuxt-link>
       </div>
