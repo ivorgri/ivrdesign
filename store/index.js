@@ -25,11 +25,14 @@ export const getters = {
     return state.contactDetails;
   },
   getPageBySlug: (state) => (slug) => {
-    return state.pages.find((page) => page.slug === slug.replace('/','')) || {};
+    return state.pages.find((page) => page.slug === slug) || {};
   },
   getBlogPosts: state => {
     return state.blogPosts.filter((blogPost) => blogPost.published === true) || [];
-  }
+  },
+  getBlogPostBySlug: (state) => (slug) => {
+    return state.blogPosts.find((blogPost) => blogPost.slug_slug === slug) || {};
+  },
 }
 
 export const mutations = {

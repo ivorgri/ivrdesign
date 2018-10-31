@@ -44,6 +44,7 @@
         return this.$store.getters.isOnline;
       },
       onlineContent() {
+        // console.log(this.$store.getters.getPageBySlug('').contentOnline);
         return this.$store.getters.getPageBySlug('').contentOnline;
       },
       offlineContent() {

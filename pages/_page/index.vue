@@ -65,7 +65,7 @@
   export default {
     computed: {
       cleanSlug() {
-        return this.$route.path.replace('/','');
+        return this.$route.params.page;
       },
       containerClass() {
         return `${this.cleanSlug}-container`;
