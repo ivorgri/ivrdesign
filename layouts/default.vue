@@ -66,10 +66,10 @@
 <style lang="scss">
   @import "@/assets/css/variables.scss";
 
-  /* :root {
-    --light-main-color: white;
-    --light-background-color: black;
-  } */
+  :root {
+    // --light-main-color: white;
+    // --light-background-color: black;
+  }
 
   html {
     font-family: 'Raleway', sans-serif;
@@ -135,8 +135,16 @@
 
   .container {
     display: grid;
-    grid-template-columns: 10vw 80vw 10vw;
+    grid-template-columns: minmax(0,10vw) minmax($breakpoint, 80vw) minmax(0,10vw);
     grid-template-areas: ". content .";
+  }
+
+  @media screen and (max-width: $breakpoint) {
+    .container {
+      display: grid;
+      grid-template-columns: 100vw;
+      grid-template-areas: "content";
+    }
   }
 
   footer {
