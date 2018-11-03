@@ -1,63 +1,30 @@
 <template>
   <transition-group
+    id="page"
     name="fade"
     mode="out-in">
-    <div
-      v-if="isOnline"
-      id="online-content"
-      key="online-content"
-      class="content"
-      data-cy="content"
-      v-html="onlineContent"/>
-    <div
-      v-else-if="!isOnline && !offlineContent"
-      id="online-offline-content"
-      key="online-offline-content"
-      class="content"
-      data-cy="content"
-      v-html="onlineContent"/>
-    <div
-      v-else-if="!isOnline && offlineContent"
-      id="offline-content"
-      key="offline-content"
-      class="content"
-      data-cy="content"
-      v-html="offlineContent"/>
-    <div
-      v-else
-      id="fallback-content"
-      key="fallback-content"
-      class="content"
-      data-cy="content"
-      v-html="onlineContent"/>
-    <hr key="splitter">
-    <div
-      v-if="$store.getters.getBlogPosts.length <= 0"
-      id="no-blog-posts"
-      key="no-blog-posts"
-      data-cy="no-blog-posts">
-      {{ page.listFallback }}
-    </div>
-    <div
-      v-else-if="blogPosts.length > 0"
-      id="blog-posts"
-      key="blog-posts"
-      data-cy="blog-posts">
-      <nuxt-link
-        v-for="blogPost in blogPosts"
-        :to="`/blog/${blogPost.slug_slug}`"
-        :key="blogPost.title"
-        class="blog-post-link">
-        <h2 class="blog-post-link-title">{{ blogPost.title }}</h2>
-        <span class="blog-post-link-create-date">{{ blogPost._created | formatDate }}</span>
-        <span class="blog-post-link-preview">{{ blogPost.preview }}</span>
-      </nuxt-link>
-    </div>
+    <PageContent
+      key="content"
+      :defaultContent="onlineContent"
+      :offlineContent="offlineContent"
+    />
+    <PageList
+      key="associatedList"
+      :page="page"
+      :list="associatedList"
+    />
   </transition-group>
 </template>
 
 <script>
+  import PageContent from '~/components/PageContent.vue';
+  import PageList from '~/components/PageList.vue';
+
   export default {
+    components: {
+      PageContent,
+      PageList,
+    },
     computed: {
       cleanSlug() {
         return this.$route.params.page;
@@ -65,17 +32,15 @@
       page() {
         return this.$store.getters.getPageBySlug(this.cleanSlug);
       },
-      isOnline() {
-        return this.$store.getters.isOnline;
-      },
       onlineContent() {
         return this.page.contentOnline;
       },
       offlineContent() {
         return this.page.contentOffline;
       },
-      blogPosts() {
-        return this.$store.getters.getBlogPosts;
+      associatedList() {
+        return [];
+        // return this.$store.getters.getBlogPosts;
       }
     },
   }
@@ -85,54 +50,8 @@
 <style lang="scss">
   @import "@/assets/css/variables.scss";
 
-  .container {
-    display: grid;
-    grid-template-columns: 10vw 80vw 10vw;
-    grid-template-rows: repeat(2,auto);
-    grid-template-areas: ". content .";
-  }
-
-  .content {
-    padding: 0 1vw;
-  }
-
-  .blog-container span {
+  #page {
     grid-area: content;
-  }
-
-  .blog-post-link {
-    text-decoration: none;
-    color: $light-main-color;
-    display: grid;
-    grid-template-columns: 75% 25%;
-    grid-template-rows: repeat(2, auto);
-    grid-template-areas: "title createdate"
-      "preview preview";
-    padding: 0 1vw;
-
-    .blog-post-link-title {
-      grid-area: title;
-      margin: 0;
-      border-bottom: 3px solid $dark-main-color;
-    }
-
-    .blog-post-link-create-date {
-      grid-area: createdate;
-      justify-self: end;
-    }
-
-    .blog-post-link-preview {
-      grid-area: preview;
-      border-left: 3px solid $dark-main-color;
-    }
-
-    &:hover .blog-post-link-title {
-      border-bottom: 3px solid $light-main-color;
-    }
-
-    &:hover .blog-post-link-preview {
-      border-left: 3px solid $light-main-color;
-    }
   }
 
   .fade-enter-active, .fade-leave-active {
