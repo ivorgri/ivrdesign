@@ -1,16 +1,16 @@
 <template>
-  <content
+  <PageContent
     :defaultContent="onlineContent"
     :offlineContent="offlineContent"
   />
 </template>
 
 <script>
-  import Content from '~/components/Content.vue';
+  import PageContent from '~/components/PageContent.vue';
 
   export default {
     components: {
-      Content,
+      PageContent,
     },
     computed: {
       onlineContent() {
