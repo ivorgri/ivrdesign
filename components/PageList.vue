@@ -1,7 +1,7 @@
 <template>
   <div
-    id="collectionList"
-    data-cy="collectionList">
+    id="collection-list"
+    data-cy="collection-list">
     <hr key="splitter">
     <div
       v-if="collectionList.length <= 0"
