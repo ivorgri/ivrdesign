@@ -18,7 +18,11 @@
       </nuxt-link>
 
     </header>
-    <nuxt/>
+    <section
+      class="container"
+      data-cy="container">
+      <nuxt/>
+    </section>
     <footer data-cy="footer">
       <a
         id="mailto-link"
