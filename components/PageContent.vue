@@ -53,6 +53,7 @@
   .fade-enter-active, .fade-leave-active {
     transition: opacity $transition-time/2;
   }
+
   .fade-enter, .fade-leave-to {
     opacity: 0;
   }
