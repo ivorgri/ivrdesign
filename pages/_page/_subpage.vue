@@ -27,7 +27,7 @@
 <style lang="scss">
   @import "@/assets/css/variables.scss";
 
-  /* .container {
+  .container {
     display: grid;
     grid-template-columns: 10vw 80vw 10vw;
     grid-template-rows: repeat(2,auto);
@@ -42,6 +42,7 @@
     grid-area: content;
   }
 
+  /*
   .blog-post-link {
     text-decoration: none;
     color: $light-main-color;
