@@ -1,20 +1,22 @@
 <template>
-  <div id="list">
+  <div
+    id="collectionList"
+    data-cy="collectionList">
     <hr key="splitter">
     <div
-      v-if="list.length <= 0"
+      v-if="collectionList.length <= 0"
       id="no-blog-posts"
       key="no-blog-posts"
       data-cy="no-blog-posts">
       {{ page.listFallback }}
     </div>
     <div
-      v-else-if="list.length > 0"
+      v-else-if="collectionList.length > 0"
       id="blog-posts"
       key="blog-posts"
       data-cy="blog-posts">
       <nuxt-link
-        v-for="listItem in list"
+        v-for="listItem in collectionList"
         :to="`/blog/${listItem.slug_slug}`"
         :key="listItem.title"
         class="blog-post-link">
@@ -29,7 +31,7 @@
 <script>
   export default {
     props: {
-      list: {
+      collectionList: {
         type: Array,
         default: () => []
       },
