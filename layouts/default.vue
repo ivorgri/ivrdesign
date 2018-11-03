@@ -133,6 +133,12 @@
     transition: $transition-time;
   }
 
+  .container {
+    display: grid;
+    grid-template-columns: 10vw 80vw 10vw;
+    grid-template-areas: ". content .";
+  }
+
   footer {
     display: flex;
     flex-direction: row;
