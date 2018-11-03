@@ -5,17 +5,18 @@
     <hr key="splitter">
     <div
       v-if="collectionList.length <= 0"
-      id="no-blog-posts"
-      key="no-blog-posts"
-      data-cy="no-blog-posts">
+      id="no-collection-list-items"
+      key="no-collection-list-items"
+      data-cy="no-collection-list-items">
       {{ page.listFallback }}
     </div>
     <div
       v-else-if="collectionList.length > 0"
-      id="blog-posts"
-      key="blog-posts"
-      data-cy="blog-posts">
-      <nuxt-link
+      id="collection-list-items"
+      key="collection-list-items"
+      data-cy="collection-list-items">
+        Content from collection list should be put here.
+      <!--<nuxt-link
         v-for="listItem in collectionList"
         :to="`/blog/${listItem.slug_slug}`"
         :key="listItem.title"
@@ -23,7 +24,7 @@
         <h2 class="blog-post-link-title">{{ listItem.title }}</h2>
         <span class="blog-post-link-create-date">{{ listItem._created | formatDate }}</span>
         <span class="blog-post-link-preview">{{ listItem.preview }}</span>
-      </nuxt-link>
+      </nuxt-link>-->
     </div>
   </div>
 </template>
@@ -51,7 +52,7 @@
 <style lang="scss">
   @import "@/assets/css/variables.scss";
 
-  .blog-post-link {
+  .collection-item-link {
     text-decoration: none;
     color: $light-main-color;
     display: grid;
@@ -61,27 +62,27 @@
       "preview preview";
     padding: 0 1vw;
 
-    .blog-post-link-title {
+    .collection-item-link-title {
       grid-area: title;
       margin: 0;
       border-bottom: 3px solid $dark-main-color;
     }
 
-    .blog-post-link-create-date {
+    .collection-item-link-create-date {
       grid-area: createdate;
       justify-self: end;
     }
 
-    .blog-post-link-preview {
+    .collection-item-link-preview {
       grid-area: preview;
       border-left: 3px solid $dark-main-color;
     }
 
-    &:hover .blog-post-link-title {
+    &:hover .collection-item-link-title {
       border-bottom: 3px solid $light-main-color;
     }
 
-    &:hover .blog-post-link-preview {
+    &:hover .collection-item-link-preview {
       border-left: 3px solid $light-main-color;
     }
   }
