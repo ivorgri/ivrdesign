@@ -15,7 +15,7 @@
       id="collection-list-items"
       key="collection-list-items"
       data-cy="collection-list-items">
-      Content from collection list should be put here.
+      Content from collection list should be put here. Create different components for i.e. Blog, Project
       <!--<nuxt-link
         v-for="listItem in collectionList"
         :to="`/blog/${listItem.slug_slug}`"
