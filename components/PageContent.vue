@@ -3,8 +3,8 @@
     name="fade"
     mode="out-in">
     <div
+      id="content"
       key="content"
-      class="content"
       data-cy="content"
       v-html="content"/>
   </transition>
@@ -45,7 +45,7 @@
 <style lang="scss">
   @import "@/assets/css/variables.scss";
 
-  .content {
+  #content {
     grid-area: content;
   }
 
