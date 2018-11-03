@@ -3,7 +3,6 @@
     name="fade"
     mode="out-in">
     <div
-      id="content"
       key="content"
       class="content"
       data-cy="content"
