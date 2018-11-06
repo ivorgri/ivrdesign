@@ -34,11 +34,17 @@ export const getters = {
   getBlogPostBySlug: (state) => (slug) => {
     return state.blogPosts.find((blogPost) => blogPost.slug_slug === slug) || {};
   },
+  getBlogPostById: (state) => (id) => {
+    return state.blogPosts.find((blogPost) => blogPost._id === id) || {};
+  },
   getProjects: state => {
     return state.projects.filter((project) => project.published === true) || [];
   },
   getProjectBySlug: (state) => (slug) => {
     return state.blogPosts.find((project) => project.slug_slug === slug) || {};
+  },
+  getProjectById: (state) => (id) => {
+    return state.blogPosts.find((project) => project._id === id) || {};
   },
 }
 
