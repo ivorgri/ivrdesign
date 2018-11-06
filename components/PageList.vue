@@ -135,6 +135,7 @@
     .blog-post-link-preview {
       grid-area: preview;
       border-left: 3px solid $dark-main-color;
+      padding-left: 1vw;
     }
 
     &:hover .blog-post-link-title, &:hover .blog-post-link-create-date {
