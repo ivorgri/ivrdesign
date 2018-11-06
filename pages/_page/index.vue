@@ -11,7 +11,6 @@
     <PageList
       key="associatedList"
       :page="page"
-      :list="associatedList"
     />
   </transition-group>
 </template>
@@ -38,10 +37,6 @@
       offlineContent() {
         return this.page.contentOffline;
       },
-      associatedList() {
-        return [];
-        // return this.$store.getters.getBlogPosts;
-      }
     },
   }
 
