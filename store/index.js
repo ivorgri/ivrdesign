@@ -15,6 +15,7 @@ export const state = () => ({
   contactDetails: {},
   pages: [],
   blogPosts: [],
+  projects: [],
 })
 
 export const getters = {
@@ -33,6 +34,12 @@ export const getters = {
   getBlogPostBySlug: (state) => (slug) => {
     return state.blogPosts.find((blogPost) => blogPost.slug_slug === slug) || {};
   },
+  getProjects: state => {
+    return state.projects.filter((project) => project.published === true) || [];
+  },
+  getProjectBySlug: (state) => (slug) => {
+    return state.blogPosts.find((project) => project.slug_slug === slug) || {};
+  },
 }
 
 export const mutations = {
@@ -48,16 +55,20 @@ export const mutations = {
   SET_BLOG_POSTS (state, blogPosts) {
     state.blogPosts = blogPosts;
   },
+  SET_PROJECTS (state, projects) {
+    state.projects = projects;
+  },
 }
 
 export const actions = {
   async nuxtServerInit({ commit },{ app }) {
-    let [ contactDetails, pages, blogPosts ] = [{},{},{}];
+    let [ contactDetails, pages, blogPosts, projects ] = [{},{},{},{}];
     try {
-      [ contactDetails, pages, blogPosts ] = await Promise.all([
+      [ contactDetails, pages, blogPosts, projects ] = await Promise.all([
         getSingleton('contactDetails', app),
         getCollection('pages', app),
-        getCollection('blogPosts', app)
+        getCollection('blogPosts', app),
+        getCollection('projects', app)
       ]);
     } catch (error) {
       console.log(error);
@@ -65,5 +76,6 @@ export const actions = {
     commit('SET_CONTACTDETAILS', contactDetails);
     commit('SET_PAGES', pages.entries);
     commit('SET_BLOG_POSTS', blogPosts.entries);
+    commit('SET_PROJECTS', projects.entries);
   }
 }
