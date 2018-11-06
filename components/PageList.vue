@@ -21,7 +21,7 @@
         :key="listItem.title"
         class="collection-item-link blog-post-link">
         <h2 class="blog-post-link-title">{{ listItem.title }}</h2>
-        <span class="blog-post-link-create-date">{{ listItem._created | formatDate }}</span>
+        <span class="blog-post-link-create-date">{{ listItem.publishDate }}</span>
         <span class="blog-post-link-preview">{{ listItem.preview }}</span>
       </nuxt-link>
     </div>
