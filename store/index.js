@@ -14,6 +14,8 @@ export const state = () => ({
   online: true,
   contactDetails: {},
   pages: [],
+  blogPosts: [],
+  projects: [],
 })
 
 export const getters = {
@@ -23,8 +25,26 @@ export const getters = {
   getContactDetails: state => {
     return state.contactDetails;
   },
-  getHomepage: state => {
-    return state.pages.find((page) => page.template === 'Homepage');
+  getPageBySlug: (state) => (slug) => {
+    return state.pages.find((page) => page.slug === slug) || {};
+  },
+  getBlogPosts: state => {
+    return state.blogPosts.filter((blogPost) => blogPost.published === true) || [];
+  },
+  getBlogPostBySlug: (state) => (slug) => {
+    return state.blogPosts.find((blogPost) => blogPost.slug_slug === slug) || {};
+  },
+  getBlogPostById: (state) => (id) => {
+    return state.blogPosts.find((blogPost) => blogPost._id === id) || {};
+  },
+  getProjects: state => {
+    return state.projects.filter((project) => project.published === true) || [];
+  },
+  getProjectBySlug: (state) => (slug) => {
+    return state.blogPosts.find((project) => project.slug_slug === slug) || {};
+  },
+  getProjectById: (state) => (id) => {
+    return state.blogPosts.find((project) => project._id === id) || {};
   },
 }
 
@@ -38,21 +58,30 @@ export const mutations = {
   SET_PAGES (state, pages) {
     state.pages = pages;
   },
+  SET_BLOG_POSTS (state, blogPosts) {
+    state.blogPosts = blogPosts;
+  },
+  SET_PROJECTS (state, projects) {
+    state.projects = projects;
+  },
 }
 
 export const actions = {
   async nuxtServerInit({ commit },{ app }) {
-    let [ contactDetails, pages ] = [{},{}];
+    let [ contactDetails, pages, blogPosts, projects ] = [{},{},{},{}];
     try {
-      [ contactDetails, pages ] = await Promise.all([
+      [ contactDetails, pages, blogPosts, projects ] = await Promise.all([
         getSingleton('contactDetails', app),
-        getCollection('pages', app)
+        getCollection('pages', app),
+        getCollection('blogPosts', app),
+        getCollection('projects', app)
       ]);
     } catch (error) {
       console.log(error);
     }
-
     commit('SET_CONTACTDETAILS', contactDetails);
     commit('SET_PAGES', pages.entries);
+    commit('SET_BLOG_POSTS', blogPosts.entries);
+    commit('SET_PROJECTS', projects.entries);
   }
 }
