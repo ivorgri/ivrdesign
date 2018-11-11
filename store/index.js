@@ -25,6 +25,9 @@ export const getters = {
   getContactDetails: state => {
     return state.contactDetails;
   },
+  getNavItems: state => {
+    return state.pages.filter((page) => page.addToMenu === true) || [];
+  },
   getPageBySlug: (state) => (slug) => {
     return state.pages.find((page) => page.slug === slug) || {};
   },
