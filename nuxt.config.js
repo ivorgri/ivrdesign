@@ -1,11 +1,5 @@
 const pkg = require('./package')
 
-const axios = require('axios');
-
-const cmsApiUrl = 'https://cms.ivrdesign.nl/cockpit-master/api';
-const getSingletonUrl = `${cmsApiUrl}/singletons/get`;
-const getCollectionUrl = `${cmsApiUrl}/collections/get`;
-
 module.exports = {
   mode: 'universal',
   /*
@@ -76,6 +70,7 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/axios',
     '@nuxtjs/dotenv',
+    '~/modules/dynamicRoutes',
   ],
 
   /*
@@ -116,10 +111,5 @@ module.exports = {
   /*
   ** Generate configuration
   */
- generate: {
-  routes: [
-    '/blog',
-    '/projects',
-  ]
- },
+  // See modules dynamicRoutes for routes that are generated
 }
