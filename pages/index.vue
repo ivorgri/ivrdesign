@@ -9,15 +9,19 @@
   import PageContent from '~/components/PageContent.vue';
 
   export default {
+    async asyncData({ params, error, payload, store }) {
+      if (payload) return { page: payload }
+      else return { page: store.getters.getPageBySlug('') }
+    },
     components: {
       PageContent,
     },
     computed: {
       onlineContent() {
-        return this.$store.getters.getPageBySlug('').contentOnline;
+        return this.page.contentOnline;
       },
       offlineContent() {
-        return this.$store.getters.getPageBySlug('').contentOffline;
+        return this.page.contentOffline;
       },
     },
   }
