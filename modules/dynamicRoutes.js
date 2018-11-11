@@ -8,7 +8,7 @@ async function getCollection(collection,cmsApiToken) {
 }
 
 export default async function () {
-  const cmsApiToken = this.options.env.CMS_API_TOKEN;
+  const cmsApiToken = this.options.env.CMS_API_TOKEN || process.env.CMS_API_TOKEN;
   let [ pages, blogPosts, projects ] = [{},{},{}];
   try {
     [ pages, blogPosts, projects ] = await Promise.all([
