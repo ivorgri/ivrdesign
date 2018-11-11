@@ -8,13 +8,12 @@
   import PageContent from '~/components/PageContent.vue';
 
   export default {
+    async asyncData({ params, error, payload, store }) {
+      if (payload) return { blogPost: payload }
+      else return { blogPost: store.getters.getBlogPostBySlug(params.subpage) }
+    },
     components: {
       PageContent,
-    },
-    computed: {
-      blogPost() {
-        return this.$store.getters.getBlogPostBySlug(this.$route.params.subpage);
-      },
     },
   }
 </script>
