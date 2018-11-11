@@ -2,7 +2,10 @@
   <div
     id="collection-list"
     data-cy="collection-list">
-    <hr key="splitter">
+    <hr
+      v-if="slug == 'blog' || slug == 'projects'"
+      key="splitter"
+    >
     <div
       v-if="collectionList.length <= 0"
       id="no-collection-list-items"
@@ -26,7 +29,7 @@
       </nuxt-link>
     </div>
     <div
-      v-else-if="collectionList.length > 0 && slug == 'project'"
+      v-else-if="collectionList.length > 0 && slug == 'projects'"
       id="collection-list-items"
       key="collection-list-items"
       data-cy="collection-list-items">
@@ -55,7 +58,7 @@
             slug = 'blog';
             break;
           case 'projects':
-            slug = 'project';
+            slug = 'projects';
             break;
           default:
             slug = '';
@@ -65,15 +68,15 @@
       collectionList() {
         const page = this.page;
         let collectionList = [];
-        let collectionListEntries = [];
-        collectionListEntries = page.projectList || page.blogPostList;
-        const collectionListEntryIds = collectionListEntries.map(collectionListEntry => {
+        let collectionListSpecificEntries = [];
+        collectionListSpecificEntries = page.projectList || page.blogPostList || [];
+        const collectionListEntryIds = collectionListSpecificEntries.map(collectionListEntry => {
           return collectionListEntry._id;
         });
         switch(page.associatedList) {
           case 'blogPosts':
             const blogPosts = this.$store.getters.getBlogPosts;
-            if (collectionListEntries.length > 0) {
+            if (collectionListSpecificEntries.length > 0) {
               collectionListEntryIds.forEach(entryId => {
                 collectionList.push(this.$store.getters.getBlogPostById(entryId));
               })
@@ -83,7 +86,7 @@
             break;
           case 'projects':
             const projects = this.$store.getters.getProjects;
-            if (collectionListEntries.length > 0) {
+            if (collectionListSpecificEntries.length > 0) {
               collectionListEntryIds.forEach(entryId => {
                 collectionList.push(this.$store.getters.getProjectById(entryId));
               })
