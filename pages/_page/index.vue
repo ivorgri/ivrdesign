@@ -20,17 +20,15 @@
   import PageList from '~/components/PageList.vue';
 
   export default {
+    async asyncData({ params, error, payload, store }) {
+      if (payload) return { page: payload }
+      else return { page: store.getters.getPageBySlug(params.page) }
+    },
     components: {
       PageContent,
       PageList,
     },
     computed: {
-      cleanSlug() {
-        return this.$route.params.page;
-      },
-      page() {
-        return this.$store.getters.getPageBySlug(this.cleanSlug);
-      },
       onlineContent() {
         return this.page.contentOnline;
       },
