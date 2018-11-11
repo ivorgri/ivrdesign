@@ -145,6 +145,10 @@
     }
   }
 
+  /*
+  ** Hamburger menu based on:
+  ** https://codepen.io/erikterwan/pen/EVzeRP
+  */
   nav {
     grid-column: 2 / span 1;
     grid-row: 1 / span 3;
