@@ -108,7 +108,7 @@
 
   .collection-item-link {
     text-decoration: none;
-    color: $light-main-color;
+    color: var(--text-color);
     margin: 3vw 0;
     padding: 0 1vw;
   }
@@ -132,21 +132,21 @@
     }
 
     .blog-post-link-title, .blog-post-link-create-date {
-      border-bottom: 3px solid $dark-main-color;
+      border-bottom: 3px solid var(--background-color);
     }
 
     .blog-post-link-preview {
       grid-area: preview;
-      border-left: 3px solid $dark-main-color;
+      border-left: 3px solid var(--background-color);
       padding-left: 1vw;
     }
 
     &:hover .blog-post-link-title, &:hover .blog-post-link-create-date {
-      border-bottom: 3px solid $light-main-color;
+      border-bottom: 3px solid var(--text-color);
     }
 
     &:hover .blog-post-link-preview {
-      border-left: 3px solid $light-main-color;
+      border-left: 3px solid var(--text-color);
     }
   }
 </style>
