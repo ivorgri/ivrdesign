@@ -1,5 +1,11 @@
 const pkg = require('./package')
 
+const axios = require('axios');
+
+const cmsApiUrl = 'https://cms.ivrdesign.nl/cockpit-master/api';
+const getSingletonUrl = `${cmsApiUrl}/singletons/get`;
+const getCollectionUrl = `${cmsApiUrl}/collections/get`;
+
 module.exports = {
   mode: 'universal',
   /*
@@ -106,4 +112,14 @@ module.exports = {
       }),
     ],
   },
+
+  /*
+  ** Generate configuration
+  */
+ generate: {
+  routes: [
+    '/blog',
+    '/projects',
+  ]
+ },
 }
