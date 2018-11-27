@@ -3,21 +3,49 @@
     id="portfolio"
     :class="[ $store.getters.isOnline ? 'light' : 'dark' ]">
     <header data-cy="header">
-      <nuxt-link
+      <button
         id="title-link"
-        to ="/" >
-        <h1
-          id="title"
-          data-cy="site-title">
+        to ="/"
+        @click="showMenu = !showMenu">
+        <span
+          id="ivr">
           IVR
-          <div
-            id="dot"
-            :class="[ $store.getters.isOnline ? 'light-dot' : 'dark-dot' ]"/>
+        </span>
+        <svg
+          id="dot">
+          <circle
+            class="dot-circle"
+            cx="50%"
+            cy="50%"
+            r="50%"/>
+        </svg>
+        <span
+          id="dsgn">
           DESIGN
-        </h1>
-      </nuxt-link>
-
+        </span>
+      </button>
     </header>
+    <nav
+      id="menu">
+      <div
+        v-for="navItem in $store.getters.getNavItems"
+        :key="navItem._id"
+        class="nav-item">
+        <svg class="menu-dot">
+          <circle
+            class="dot-circle"
+            cx="50%"
+            cy="50%"
+            r="50%"/>
+        </svg>
+        <nuxt-link
+          :to="`/${navItem.slug_slug}`"
+          :class="{'show-nav-item-link': showMenu, 'hide-nav-item-link': !showMenu}"
+          class="nav-item-link">
+          {{ navItem.pageTitle }}
+        </nuxt-link>
+      </div>
+    </nav>
     <section
       class="container"
       data-cy="container">
@@ -63,18 +91,32 @@
   </div>
 </template>
 
+<script>
+  export default {
+    data: () => {
+      return {
+        showMenu: false,
+      }
+    },
+  };
+</script>
+
 <style lang="scss">
   @import "@/assets/css/variables.scss";
 
   :root {
-    // --light-main-color: white;
-    // --light-background-color: black;
+    --text-color: darkslategray;
+    --background-color: white;
+    --logo: var(--text-color);
+    --dot-color-rgb: 0,128,0;
+    --dot-color: rgba(var(--dot-color-rgb));
   }
 
   html {
     font-family: 'Raleway', sans-serif;
     width: 100vw;
     overflow: hidden;
+    color: var(--text-color);
   }
 
   body, #__nuxt, #__layout, #portfolio {
@@ -92,48 +134,109 @@
 
   #portfolio {
     overflow-y: auto;
+    overflow-x: hidden;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(2, auto) repeat(2, 1fr);
+    grid-template-areas: "title"
+      "menu"
+      "content"
+      "footer";
   }
 
-  #title {
+  .dot-circle {
+    fill: var(--dot-color);
+  }
+
+  header {
+    grid-area: title;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". titlelink .";
+
+    & #title-link {
+      grid-area: titlelink;
+      display: flex;
+      color: var(--text-color);
+      padding: 0;
+      border: none;
+      font: inherit;
+      background-color: transparent;
+      cursor: pointer;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:focus {
+        outline: none;
+      }
+
+      & span {
+        border-bottom: 3px solid var(--background-color);
+        font-size: calc(1.2em + 3vw);
+      }
+
+      &:hover span {
+        border-bottom: 3px solid var(--text-color);
+      }
+
+      & #dot {
+        grid-area: dot;
+        align-self: center;
+        justify-self: center;
+
+        height: calc(10px + 0.7vw);
+        width: calc(10px + 0.7vw);
+        margin: 0 0.5vw;
+        z-index: 5;
+      }
+    }
+  }
+
+  nav {
+    grid-area: menu;
+
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-  }
+    font-size: 0;
 
-  #title-link {
-    text-decoration: none;
-    color: inherit;
-  }
+    .nav-item {
+      display: flex;
+      align-items: center;
 
-  .dark {
-    color: $dark-main-color;
-    background-color: $dark-background-color;
-    transition: $transition-time;
-  }
+      & .menu-dot {
+        height: calc(8px + 0.5vw);
+        width: calc(8px + 0.5vw);
+        margin: 10px;
+      }
 
-  .light {
-    color: $light-main-color;
-    background-color: $light-background-color;
-    transition: $transition-time;
-  }
+      & .nav-item-link {
+        text-decoration: none;
+        color: var(--text-color);
+      }
 
-  #dot {
-    width: calc(8px + 0.7vw);
-    height: calc(8px + 0.7vw);
-    margin: 0 1vw;
-  }
+      & .show-nav-item-link {
+        font-size: calc(16px + 1.2vw);
+        transition: font-size $transition-time;
+      }
 
-  .light-dot {
-    background-color: $logo-green-color;
-    transition: $transition-time;
-  }
+      & .hide-nav-item-link {
+        font-size: 0;
+        transition: font-size $transition-time;
+      }
+    }
 
-  .dark-dot {
-    background-color: $logo-red-color;
-    transition: $transition-time;
+    .nav-item:hover {
+      text-decoration: underline;
+    }
   }
 
   .container {
+    grid-area: content;
     display: grid;
     grid-template-columns: minmax(0,10vw) minmax($breakpoint, 80vw) minmax(0,10vw);
     grid-template-areas: ". content .";
@@ -148,6 +251,7 @@
   }
 
   footer {
+    grid-area: footer;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -165,20 +269,12 @@
   .footer-logo {
     width: calc(16px + 2vw);
     height: calc(16px + 2vw);
+    color: var(--text-color);
+    transition: $transition-time;
 
     &:hover {
       width: calc(16px + 2.3vw);
       height: calc(16px + 2.3vw);
     }
-  }
-
-  .light-logo {
-    color: $light-main-color;
-    transition: $transition-time;
-  }
-
-  .dark-logo {
-    color: $dark-main-color;
-    transition: $transition-time;
   }
 </style>
