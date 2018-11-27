@@ -44,13 +44,6 @@
           class="nav-item-link">
           {{ navItem.pageTitle }}
         </nuxt-link>
-        <svg class="menu-dot">
-          <circle
-            class="dot-circle"
-            cx="50%"
-            cy="50%"
-            r="50%"/>
-        </svg>
       </div>
     </nav>
     <section
@@ -204,9 +197,9 @@
 
   nav {
     grid-area: menu;
-    height: calc(16px + 1.2vw);
 
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     font-size: 0;
@@ -218,7 +211,7 @@
       & .menu-dot {
         height: calc(8px + 0.5vw);
         width: calc(8px + 0.5vw);
-        margin: 5px;
+        margin: 10px;
       }
 
       & .nav-item-link {
@@ -239,10 +232,6 @@
 
     .nav-item:hover {
       text-decoration: underline;
-    }
-
-    .nav-item:not(:first-child) .menu-dot:first-child {
-      display: none;
     }
   }
 
