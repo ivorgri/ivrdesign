@@ -3,35 +3,54 @@
     id="portfolio"
     :class="[ $store.getters.isOnline ? 'light' : 'dark' ]">
     <header data-cy="header">
-      <h1
-        id="title"
-        data-cy="site-title">
-        <nuxt-link
-          id="title-link"
-          to ="/" >
-          <span>IVR</span>
-          <div
-            id="dot"
-            :class="[ $store.getters.isOnline ? 'light-dot' : 'dark-dot' ]"/>
-          <span>DESIGN</span>
-        </nuxt-link>
-      </h1>
+      <button
+        id="title-link"
+        to ="/"
+        @click="showMenu = !showMenu">
+        <span
+          id="ivr">
+          IVR
+        </span>
+        <svg
+          id="dot">
+          <circle
+            class="dot-circle"
+            cx="50%"
+            cy="50%"
+            r="50%"/>
+        </svg>
+        <span
+          id="dsgn">
+          DESIGN
+        </span>
+      </button>
     </header>
-    <nav>
-      <input type="checkbox">
-      <div id="hamburger">
-        <span class="hamburger-line"/>
-        <span class="hamburger-line"/>
-        <span class="hamburger-line"/>
-      </div>
-      <div id="menu">
+    <nav
+      id="menu">
+      <div
+        v-for="navItem in $store.getters.getNavItems"
+        :key="navItem._id"
+        class="nav-item">
+        <svg class="menu-dot">
+          <circle
+            class="dot-circle"
+            cx="50%"
+            cy="50%"
+            r="50%"/>
+        </svg>
         <nuxt-link
-          v-for="navItem in $store.getters.getNavItems"
-          :key="navItem._id"
           :to="`/${navItem.slug_slug}`"
-          class="nav-item">
-          <span>{{ navItem.pageTitle }}</span>
+          :class="{'show-nav-item-link': showMenu, 'hide-nav-item-link': !showMenu}"
+          class="nav-item-link">
+          {{ navItem.pageTitle }}
         </nuxt-link>
+        <svg class="menu-dot">
+          <circle
+            class="dot-circle"
+            cx="50%"
+            cy="50%"
+            r="50%"/>
+        </svg>
       </div>
     </nav>
     <section
@@ -79,16 +98,25 @@
   </div>
 </template>
 
+<script>
+  export default {
+    data: () => {
+      return {
+        showMenu: false,
+      }
+    },
+  };
+</script>
+
 <style lang="scss">
   @import "@/assets/css/variables.scss";
 
   :root {
-    // --light-main-color: white;
-    // --light-background-color: black;
     --text-color: darkslategray;
     --background-color: white;
     --logo: var(--text-color);
-    --dot-color: green;
+    --dot-color-rgb: 0,128,0;
+    --dot-color: rgba(var(--dot-color-rgb));
   }
 
   html {
@@ -115,177 +143,108 @@
     overflow-y: auto;
     overflow-x: hidden;
     display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto repeat(2, 1fr);
-    grid-template-areas: "title nav"
-      "content content"
-      "footer footer";
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(2, auto) repeat(2, 1fr);
+    grid-template-areas: "title"
+      "menu"
+      "content"
+      "footer";
+  }
+
+  .dot-circle {
+    fill: var(--dot-color);
   }
 
   header {
     grid-area: title;
-
-    #title {
-      border-bottom: 3px solid var(--background-color);
-      border-right: 3px solid var(--background-color);
-      padding-right: 15px;
-
-      &:hover {
-        border-bottom: 3px solid var(--text-color);
-        border-right: 3px solid var(--text-color);
-      }
-    }
-
-    #title-link {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      text-decoration: none;
-      color: inherit;
-    }
-  }
-
-  /*
-  ** Hamburger menu based on:
-  ** https://codepen.io/erikterwan/pen/EVzeRP
-  */
-  nav {
-    grid-column: 2 / span 1;
-    grid-row: 1 / span 3;
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 72px auto;
-    grid-template-areas: "hamburger"
-      "menu";
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". titlelink .";
 
-    input {
-      grid-area: hamburger;
-      margin: 20px 40px 20px 20px;
-      justify-self: end;
-      align-self: center;
-      width: 40px;
-      height: 32px;
-
+    & #title-link {
+      grid-area: titlelink;
+      display: flex;
+      color: var(--text-color);
+      padding: 0;
+      border: none;
+      font: inherit;
+      background-color: transparent;
       cursor: pointer;
 
-      opacity: 0;
-      z-index: 2;
-
-      -webkit-touch-callout: none;
-
-      &:checked ~ #hamburger .hamburger-line
-      {
-        opacity: 1;
-        background: var(--text-color);
+      &:hover {
+        cursor: pointer;
       }
 
-      &:checked ~ #hamburger .hamburger-line:nth-child(1)
-      {
-        transform: translate(5px, 0px) rotate(45deg);
+      &:focus {
+        outline: none;
       }
 
-      &:checked ~ #hamburger .hamburger-line:nth-child(2)
-      {
-        opacity: 0;
-        transform: rotate(0deg) scale(0.2, 0.2);
+      & span {
+        border-bottom: 3px solid var(--background-color);
+        font-size: calc(1.2em + 3vw);
       }
 
-      &:checked ~ #hamburger .hamburger-line:nth-child(3)
-      {
-        transform: rotate(-45deg) translate(1px, 1px);
+      &:hover span {
+        border-bottom: 3px solid var(--text-color);
       }
 
-      &:checked ~ #menu {
-        transform: none;
+      & #dot {
+        grid-area: dot;
+        align-self: center;
+        justify-self: center;
+
+        height: calc(10px + 0.7vw);
+        width: calc(10px + 0.7vw);
+        margin: 0 0.5vw;
+        z-index: 5;
       }
     }
+  }
 
-    #hamburger {
-      grid-area: hamburger;
-      margin: 20px 40px 20px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-self: end;
-      align-self: center;
+  nav {
+    grid-area: menu;
+    height: calc(16px + 1.2vw);
 
-      z-index: 1;
-    }
-
-    .hamburger-line {
-      width: 33px;
-      height: 4px;
-      margin-bottom: 5px;
-      position: relative;
-
-      background: var(--text-color);
-      border-radius: 3px;
-
-      transform-origin: 4px 0px;
-
-      transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-        background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-        opacity 0.55s ease;
-    }
-
-    #menu {
-      grid-row: 1 / span 2;
-      grid-column: 1;
-      display: grid;
-      grid-template-columns: 100%;
-      grid-auto-rows: calc(1.7em + 0.5vw);
-      padding-top: 72px;
-      transform: translate(100vw, 0);
-      transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0;
 
     .nav-item {
-      align-self:end;
-      justify-self: end;
-      text-decoration: none;
-      color: inherit;
-      border-bottom: 3px solid var(--background-color);
-      border-left: 3px solid var(--background-color);
-      margin-right: 5px;
-      padding-left: 5px;
-      padding-right: 20px;
-      font-size: calc(1.2em + 0.5vw);
+      display: flex;
+      align-items: center;
 
-      &:hover {
-        border-bottom: 3px solid var(--text-color);
-        border-left: 3px solid var(--text-color);
+      & .menu-dot {
+        height: calc(8px + 0.5vw);
+        width: calc(8px + 0.5vw);
+        margin: 5px;
+      }
+
+      & .nav-item-link {
+        text-decoration: none;
+        color: var(--text-color);
+      }
+
+      & .show-nav-item-link {
+        font-size: calc(16px + 1.2vw);
+        transition: font-size $transition-time;
+      }
+
+      & .hide-nav-item-link {
+        font-size: 0;
+        transition: font-size $transition-time;
       }
     }
+
+    .nav-item:hover {
+      text-decoration: underline;
+    }
+
+    .nav-item:not(:first-child) .menu-dot:first-child {
+      display: none;
+    }
   }
-
-  /* .dark {
-    color: $dark-main-color;
-    background-color: $dark-background-color;
-    transition: $transition-time;
-  }
-
-  .light {
-    color: $light-main-color;
-    background-color: $light-background-color;
-    transition: $transition-time;
-  } */
-
-  #dot {
-    width: calc(8px + 0.7vw);
-    height: calc(8px + 0.7vw);
-    margin: 0 1vw;
-    background-color: var(--dot-color);
-    transition: $transition-time;
-  }
-
-  /*.light-dot {
-    background-color: $logo-green-color;
-    transition: $transition-time;
-  }
-
-  .dark-dot {
-    background-color: $logo-red-color;
-    transition: $transition-time;
-  }*/
 
   .container {
     grid-area: content;
@@ -329,14 +288,4 @@
       height: calc(16px + 2.3vw);
     }
   }
-
-  /* .light-logo {
-    color: $light-main-color;
-    transition: $transition-time;
-  }
-
-  .dark-logo {
-    color: $dark-main-color;
-    transition: $transition-time;
-  } */
 </style>
