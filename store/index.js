@@ -52,7 +52,7 @@ export const getters = {
 }
 
 export const mutations = {
-  setIsOnline (state, value) {
+  SET_IS_ONLINE (state, value) {
     state.online = value;
   },
   SET_CONTACTDETAILS (state, contactDetails) {
