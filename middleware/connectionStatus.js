@@ -1,11 +1,12 @@
 export default function ({ store }) {
   if (process.client) {
-    store.commit('setIsOnline', navigator.onLine);
+    store.commit('SET_IS_ONLINE', navigator.onLine);
+
     window.addEventListener('online', () => {
-      store.commit('setIsOnline', navigator.onLine);
+      store.commit('SET_IS_ONLINE', navigator.onLine);
     });
     window.addEventListener('offline', () => {
-      store.commit('setIsOnline', navigator.onLine);
+      store.commit('SET_IS_ONLINE', navigator.onLine);
     });
   }
 };
