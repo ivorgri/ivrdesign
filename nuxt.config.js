@@ -1,4 +1,4 @@
-const pkg = require('./package')
+import pkg from './package';
 
 module.exports = {
   mode: 'universal',
@@ -101,11 +101,15 @@ module.exports = {
     /*
     ** Post CSS
     */
-    postcss: [
-      require('autoprefixer')({
-        browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4']
-      }),
-    ],
+    postcss: {
+      plugins: {
+        'postcss-import': {},
+        'postcss-url': {},
+        'postcss-preset-env': {},
+        'cssnano': { preset: 'default' }
+      },
+      order: 'cssnanoLast'
+    },
   },
 
   /*
