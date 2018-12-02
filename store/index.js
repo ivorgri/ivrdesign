@@ -52,7 +52,12 @@ export const getters = {
 }
 
 export const mutations = {
-  setIsOnline (state, value) {
+  INITIALIZE_STORE (state, savedStore) {
+    for (let prop in savedStore) {
+      state[prop] = savedStore[prop];
+    }
+  },
+  SET_IS_ONLINE (state, value) {
     state.online = value;
   },
   SET_CONTACTDETAILS (state, contactDetails) {

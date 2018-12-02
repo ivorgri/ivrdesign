@@ -108,8 +108,7 @@
     --text-color: darkslategray;
     --background-color: white;
     --logo: var(--text-color);
-    --dot-color-rgb: 0,128,0;
-    --dot-color: rgba(var(--dot-color-rgb));
+    --dot-color: green;
   }
 
   html {
@@ -117,6 +116,8 @@
     width: 100vw;
     overflow: hidden;
     color: var(--text-color);
+    background-color: var(--background-color);
+    transition: color $transition-time, background-color $transition-time;
   }
 
   body, #__nuxt, #__layout, #portfolio {
@@ -146,6 +147,7 @@
 
   .dot-circle {
     fill: var(--dot-color);
+    transition: fill $transition-time;
   }
 
   header {
@@ -164,6 +166,7 @@
       font: inherit;
       background-color: transparent;
       cursor: pointer;
+      transition: color $transition-time;
 
       &:hover {
         cursor: pointer;
@@ -175,6 +178,7 @@
 
       & span {
         border-bottom: 3px solid var(--background-color);
+        transition: border-bottom $transition-time;
         font-size: calc(1.2em + 3vw);
       }
 
@@ -217,6 +221,13 @@
       & .nav-item-link {
         text-decoration: none;
         color: var(--text-color);
+        border-bottom: 2px solid var(--background-color);
+        transition: color $transition-time, border-bottom $transition-time;
+
+        &:hover {
+          border-bottom: 2px solid var(--text-color);
+          transition: border-bottom $transition-time;
+        }
       }
 
       & .show-nav-item-link {
@@ -228,10 +239,6 @@
         font-size: 0;
         transition: font-size $transition-time;
       }
-    }
-
-    .nav-item:hover {
-      text-decoration: underline;
     }
   }
 
@@ -270,7 +277,7 @@
     width: calc(16px + 2vw);
     height: calc(16px + 2vw);
     color: var(--text-color);
-    transition: $transition-time;
+    transition: color $transition-time;
 
     &:hover {
       width: calc(16px + 2.3vw);
