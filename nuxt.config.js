@@ -1,7 +1,13 @@
-const pkg = require('./package')
+import pkg from './package';
 
 module.exports = {
   mode: 'universal',
+  /*
+  ** Environment variables
+  */
+  env: {
+    mode: process.env.NODE_ENV || 'production',
+  },
 
   /*
   ** Headers of the page
@@ -45,8 +51,6 @@ module.exports = {
   */
   css: [
     '@/assets/css/variables.scss',
-    '@/assets/css/default.scss',
-    '@/assets/css/index.scss',
   ],
 
   /*
@@ -54,7 +58,10 @@ module.exports = {
   */
   plugins: [
     // https://github.com/nuxt/nuxt.js/issues/2367
+    { src: '~/middleware/localStorageStore.js', ssr: false },
     { src: '~/middleware/connectionStatus.js', ssr: false },
+    { src: '~/plugins/font-awesome' },
+    { src: '~/plugins/filters' },
   ],
 
   /*
@@ -62,7 +69,17 @@ module.exports = {
   */
   modules: [
     '@nuxtjs/pwa',
+    '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
+    '~/modules/dynamicRoutes',
   ],
+
+  /*
+  ** Axios
+  */
+  axios: {
+    // proxyHeaders: false
+  },
 
   /*
   ** Build configuration
@@ -85,10 +102,19 @@ module.exports = {
     /*
     ** Post CSS
     */
-    postcss: [
-      require('autoprefixer')({
-        browsers: ['last 2 versions', 'Firefox ESR', '> 1%', 'ie >= 8', 'iOS >= 8', 'Android >= 4']
-      }),
-    ],
+    postcss: {
+      plugins: {
+        'postcss-import': {},
+        'postcss-url': {},
+        'postcss-preset-env': {},
+        'cssnano': { preset: 'default' }
+      },
+      order: 'cssnanoLast'
+    },
   },
+
+  /*
+  ** Generate configuration
+  */
+  // See modules dynamicRoutes for routes that are generated
 }
